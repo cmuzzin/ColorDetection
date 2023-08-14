@@ -1,0 +1,7 @@
+{
+  "name": "ColorApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
