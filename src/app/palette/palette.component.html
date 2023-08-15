@@ -1,0 +1,40 @@
+<ion-card color="light" *ngIf="color">
+  <img src="{{color.imagePath}}" />
+  <ion-card-content *ngIf="color.palette.Vibrant">
+    <ion-item color="light" class="ion-margin-top">
+      <ion-label>
+        <h2 class="bold">Hex</h2>
+        <h3>{{color.palette.Vibrant.hex}}</h3>
+      </ion-label>
+      <ion-button color="dark" fill="clear" slot="end" (click)="copyHex(color.palette.Vibrant.hex)">
+        <ion-icon name="copy-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item color="light" class="ion-margin-top">
+      <ion-label>
+        <h2 class="bold">RGB</h2>
+        <h3>{{color.palette.Vibrant.rgb[0]}}</h3>
+        <h3>{{color.palette.Vibrant.rgb[1]}}</h3>
+        <h3>{{color.palette.Vibrant.rgb[2]}}</h3>
+      </ion-label>
+      <ion-button color="dark" fill="clear" slot="end" (click)="copyRGB(color.palette.Vibrant.rgb)">
+        <ion-icon name="copy-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item color="light" class="ion-margin-top">
+      <ion-label>
+        <h2 class="bold">HSL</h2>
+        <h3>{{color.palette.Vibrant.hsl[0]}}</h3>
+        <h3>{{color.palette.Vibrant.hsl[1]}}</h3>
+        <h3>{{color.palette.Vibrant.hsl[2]}}</h3>
+      </ion-label>
+      <ion-button color="dark" fill="clear" slot="end" (click)="copyHSL(color.palette.Vibrant.hsl)">
+        <ion-icon name="copy-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-card-content>
+  <div class="ion-margin-top action-buttons">
+    <ion-button color="success" fill="outline" (click)="saveColor(color)">Save</ion-button>
+    <ion-button color="danger" fill="outline" (click)="deleteColor(color)">Delete</ion-button>
+  </div>
+</ion-card>
