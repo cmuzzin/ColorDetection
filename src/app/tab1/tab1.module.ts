@@ -12,7 +12,7 @@ import { PalletteComponentModule } from '../palette/palette.module';
     CommonModule,
     FormsModule,
     Tab1PageRoutingModule,
-    PalletteComponentModule
+    PalletteComponentModule,
   ],
   declarations: [Tab1Page]
 })

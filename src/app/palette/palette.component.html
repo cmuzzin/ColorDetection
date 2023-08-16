@@ -1,37 +1,54 @@
 <ion-card color="light" *ngIf="color">
-  <img src="{{color.imagePath}}" />
+  <img src="{{color.imagePath}}" (click)="openModal(color.palette)" />
   <ion-card-content *ngIf="color.palette.Vibrant">
-    <ion-item color="light" class="ion-margin-top">
+    <ion-item color="light" slot="header">
       <ion-label>
-        <h2 class="bold">Hex</h2>
-        <h3>{{color.palette.Vibrant.hex}}</h3>
+        <h1>{{color.palette.Vibrant.hex}}</h1>
       </ion-label>
       <ion-button color="dark" fill="clear" slot="end" (click)="copyHex(color.palette.Vibrant.hex)">
         <ion-icon name="copy-outline"></ion-icon>
       </ion-button>
     </ion-item>
-    <ion-item color="light" class="ion-margin-top">
-      <ion-label>
-        <h2 class="bold">RGB</h2>
-        <h3>{{color.palette.Vibrant.rgb[0]}}</h3>
-        <h3>{{color.palette.Vibrant.rgb[1]}}</h3>
-        <h3>{{color.palette.Vibrant.rgb[2]}}</h3>
-      </ion-label>
-      <ion-button color="dark" fill="clear" slot="end" (click)="copyRGB(color.palette.Vibrant.rgb)">
-        <ion-icon name="copy-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-    <ion-item color="light" class="ion-margin-top">
-      <ion-label>
-        <h2 class="bold">HSL</h2>
-        <h3>{{color.palette.Vibrant.hsl[0]}}</h3>
-        <h3>{{color.palette.Vibrant.hsl[1]}}</h3>
-        <h3>{{color.palette.Vibrant.hsl[2]}}</h3>
-      </ion-label>
-      <ion-button color="dark" fill="clear" slot="end" (click)="copyHSL(color.palette.Vibrant.hsl)">
-        <ion-icon name="copy-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
+    <ion-accordion-group>
+      <ion-accordion value="second">
+        <ion-item color="light" slot="header">
+          <ion-label>
+            <h2 class="bold">RGB</h2>
+          </ion-label>
+        </ion-item>
+        <div slot="content">
+          <ion-item color="light">
+            <ion-label>
+              <h3>{{color.palette.Vibrant.r}}</h3>
+              <h3>{{color.palette.Vibrant.g}}</h3>
+              <h3>{{color.palette.Vibrant.b}}</h3>
+            </ion-label>
+            <ion-button color="dark" fill="clear" slot="end" (click)="copyHex(color.palette.Vibrant.hex)">
+              <ion-icon name="copy-outline"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </div>
+      </ion-accordion>
+      <ion-accordion value="third">
+        <ion-item color="light" slot="header">
+          <ion-label>
+            <h2 class="bold">HSL</h2>
+          </ion-label>
+        </ion-item>
+        <div slot="content">
+          <ion-item color="light">
+            <ion-label>
+              <h3>{{color.palette.Vibrant.hsl[0]}}</h3>
+              <h3>{{color.palette.Vibrant.hsl[1]}}</h3>
+              <h3>{{color.palette.Vibrant.hsl[2]}}</h3>
+            </ion-label>
+            <ion-button color="dark" fill="clear" slot="end" (click)="copyHex(color.palette.Vibrant.hex)">
+              <ion-icon name="copy-outline"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
   </ion-card-content>
   <div class="ion-margin-top action-buttons">
     <ion-button color="success" fill="outline" (click)="saveColor(color)">Save</ion-button>

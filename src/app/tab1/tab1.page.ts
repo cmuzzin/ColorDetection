@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage-angular';
 import { Clipboard } from '@capacitor/clipboard';
 import Vibrant from 'node-vibrant';
 import { Palette, Vec3 } from 'node-vibrant/lib/color';
+import { ModalController } from '@ionic/angular';
 
 export interface Color {
   id: string;
