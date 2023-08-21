@@ -3,37 +3,15 @@
     <ion-buttons slot="start">
       <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button color="primary" (click)="confirm()" [strong]="true">Confirm</ion-button>
-    </ion-buttons>
+    <ion-title>Select a swatch</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding" *ngIf="palette">
   <ion-grid>
     <ion-row>
-      <ion-col size="6" size-sm="4">
+      <ion-col size="6" size-sm="4"  *ngFor="let swatch of swatches">
         <ion-card>
-          <div class="swatch" [style.background-color]="palette.DarkMuted?.hex"></div>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6" size-sm="4">
-        <ion-card>
-          <div class="swatch" [style.background-color]="palette.DarkVibrant?.hex"></div>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6" size-sm="4">
-        <ion-card>
-          <div class="swatch" [style.background-color]="palette.LightMuted?.hex"></div>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6" size-sm="4">
-        <ion-card>
-          <div class="swatch" [style.background-color]="palette.LightVibrant?.hex"></div>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6" size-sm="4">
-        <ion-card>
-          <div class="swatch" [style.background-color]="palette.Muted?.hex"></div>
+          <div class="swatch" [style.background-color]="swatch?.hex" (click)="select(swatch)"></div>
         </ion-card>
       </ion-col>
     </ion-row>

@@ -4,11 +4,10 @@ import { Storage } from '@ionic/storage-angular';
 import { Clipboard } from '@capacitor/clipboard';
 import Vibrant from 'node-vibrant';
 import { Palette, Vec3 } from 'node-vibrant/lib/color';
-import { ModalController } from '@ionic/angular';
+import { getColor  } from 'color-thief-node';
 
 export interface Color {
   id: string;
-  imagePath: string | undefined;
   palette: Palette;
 }
 
@@ -35,7 +34,7 @@ export class Tab1Page {
       const vibrant = new Vibrant(image.webPath);
       vibrant.getPalette().then(palette => {
         console.log(palette);
-        this.colors.push({ id: image.webPath?.split('/')[3] ?? '', imagePath: image.webPath, palette });
+        this.colors.push({ id: image.webPath?.split('/')[3] ?? '', palette });
       });
     }
   };

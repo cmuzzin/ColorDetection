@@ -1,11 +1,11 @@
 <ion-card color="light" *ngIf="color">
-  <img src="{{color.imagePath}}" (click)="openModal(color.palette)" />
-  <ion-card-content *ngIf="color.palette.Vibrant">
+  <div class="swatch" [style.background-color]="selectedSwatch?.hex" (click)="openModal(color.palette)"></div>
+  <ion-card-content *ngIf="selectedSwatch">
     <ion-item color="light" slot="header">
       <ion-label>
-        <h1>{{color.palette.Vibrant.hex}}</h1>
+        <h1>{{selectedSwatch.hex}}</h1>
       </ion-label>
-      <ion-button color="dark" fill="clear" slot="end" (click)="copyHex(color.palette.Vibrant.hex)">
+      <ion-button color="dark" fill="clear" slot="end" (click)="copyHex(selectedSwatch.hex)">
         <ion-icon name="copy-outline"></ion-icon>
       </ion-button>
     </ion-item>
@@ -19,11 +19,11 @@
         <div slot="content">
           <ion-item color="light">
             <ion-label>
-              <h3>{{color.palette.Vibrant.r}}</h3>
-              <h3>{{color.palette.Vibrant.g}}</h3>
-              <h3>{{color.palette.Vibrant.b}}</h3>
+              <h3>{{selectedSwatch.r}}</h3>
+              <h3>{{selectedSwatch.g}}</h3>
+              <h3>{{selectedSwatch.b}}</h3>
             </ion-label>
-            <ion-button color="dark" fill="clear" slot="end" (click)="copyHex(color.palette.Vibrant.hex)">
+            <ion-button color="dark" fill="clear" slot="end" (click)="copyHex(selectedSwatch.hex)">
               <ion-icon name="copy-outline"></ion-icon>
             </ion-button>
           </ion-item>
@@ -38,11 +38,11 @@
         <div slot="content">
           <ion-item color="light">
             <ion-label>
-              <h3>{{color.palette.Vibrant.hsl[0]}}</h3>
-              <h3>{{color.palette.Vibrant.hsl[1]}}</h3>
-              <h3>{{color.palette.Vibrant.hsl[2]}}</h3>
+              <h3>{{selectedSwatch.hsl[0]}}</h3>
+              <h3>{{selectedSwatch.hsl[1]}}</h3>
+              <h3>{{selectedSwatch.hsl[2]}}</h3>
             </ion-label>
-            <ion-button color="dark" fill="clear" slot="end" (click)="copyHex(color.palette.Vibrant.hex)">
+            <ion-button color="dark" fill="clear" slot="end" (click)="copyHex(selectedSwatch.hex)">
               <ion-icon name="copy-outline"></ion-icon>
             </ion-button>
           </ion-item>

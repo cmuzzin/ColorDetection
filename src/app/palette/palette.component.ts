@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Color } from '../tab1/tab1.page';
-import { Palette, Vec3 } from 'node-vibrant/lib/color';
+import { Palette, Swatch, Vec3 } from 'node-vibrant/lib/color';
 import { ModalController } from '@ionic/angular';
 import { VariantModalComponent } from '../variant-modal/variant-modal.component';
 
@@ -16,10 +16,13 @@ export class PaletteComponent  implements OnInit {
   @Output() copyHexEvent = new EventEmitter<string>();
   @Output() copyRGBEvent = new EventEmitter<Vec3>();
   @Output() copyHSLEvent = new EventEmitter<Vec3>();
+  selectedSwatch?: Swatch;
   
   constructor(private modalCtrl: ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.selectedSwatch = this.color?.palette.Vibrant;
+  }
 
   saveColor(color: Color) {
     this.saveColorEvent.emit(color);
@@ -43,14 +46,17 @@ export class PaletteComponent  implements OnInit {
 
   async openModal(palette: Palette) {
     const modal = await this.modalCtrl.create({
+      backdropDismiss:false,
       component: VariantModalComponent,
       componentProps: {
         palette,
+        selectedSwatch: this.selectedSwatch
       },
     });
     modal.present();
 
-    const { data, role } = await modal.onWillDismiss();
+    const { data } = await modal.onWillDismiss();
+    this.selectedSwatch = data;
   }
 
 }

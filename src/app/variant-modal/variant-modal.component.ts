@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Palette } from 'node-vibrant/lib/color';
+import { Palette, Swatch } from 'node-vibrant/lib/color';
 
 @Component({
   selector: 'app-variant-modal',
@@ -9,18 +9,22 @@ import { Palette } from 'node-vibrant/lib/color';
 })
 export class VariantModalComponent  implements OnInit {
   palette: Palette | undefined;
+  selectedSwatch!: Swatch;
+  swatches: Array<Swatch | undefined> = [];
   constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
-    console.log(this.palette);
+    if (this.palette) {
+      this.swatches = Object.values(this.palette);
+    }
   }
 
   cancel() {
-    return this.modalCtrl.dismiss(null, 'cancel');
+    return this.modalCtrl.dismiss(this.selectedSwatch, 'cancel');
   }
 
-  confirm() {
-    return this.modalCtrl.dismiss('test', 'confirm');
+  select(swatch: Swatch | undefined) {
+    return this.modalCtrl.dismiss(swatch, 'select');
   }
 
 }
