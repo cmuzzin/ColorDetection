@@ -34,6 +34,7 @@
     "@ionic/storage-angular": "^4.0.0",
     "colorthief": "^2.4.0",
     "ionicons": "^7.0.0",
+    "ngx-drag-drop": "^16.0.0",
     "node-vibrant": "3.1.6",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

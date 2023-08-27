@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StorageService } from '../shared/services/storage.service';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(private storageService: StorageService) {}
+
+  clearStorage() {
+    this.storageService.clearStorage();
+  }
 
 }

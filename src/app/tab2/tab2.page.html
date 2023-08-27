@@ -1,18 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Mixing Lab
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
+<ion-content>
+  <div class="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" size-sm="4" size-md="3" size-lg="2" *ngFor="let color of colors">
+          <div class="dndDragItem" [style.background-color]="color.hex" [dndDraggable]="color" (dndStart)="onDragStart($event)"></div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
 
 <ion-footer class="ion-margin">
-  <div class="drop-box">
-    <ion-text color="primary">
-      <h1>Drop color to mix!</h1>
+  <div class="drop-box" #dropbox dndDropzone dndDragoverClass="dndDragOver" (dndDrop)="onDrop($event)" (dndDragover)="onDragover($event)">
+    <ion-button shape="round" (click)="presentPopover($event)">{{mixingColors.length}}</ion-button>
+    <ion-text color="tertiary">
+      <h3>Drag colors here to mix</h3>
     </ion-text>
   </div>
 </ion-footer>

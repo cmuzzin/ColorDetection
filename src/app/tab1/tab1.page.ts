@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Camera, CameraResultType } from '@capacitor/camera';
-import { Storage } from '@ionic/storage-angular';
 import { Clipboard } from '@capacitor/clipboard';
 import Vibrant from 'node-vibrant';
-import { Palette, Vec3 } from 'node-vibrant/lib/color';
-import { getColor  } from 'color-thief-node';
+import { Palette, Swatch, Vec3 } from 'node-vibrant/lib/color';
+import { StorageService } from '../shared/services/storage.service';
 
 export interface Color {
   id: string;
@@ -18,11 +17,7 @@ export interface Color {
 })
 export class Tab1Page {
   colors: Array<Color> = [];
-  constructor(private storage: Storage) {}
-
-  async ngOnInit() {
-    await this.storage.create();
-  }
+  constructor(private storageService: StorageService) {}
 
   async getPhoto() {
     const image = await Camera.getPhoto({
@@ -33,19 +28,21 @@ export class Tab1Page {
     if(image.webPath) {
       const vibrant = new Vibrant(image.webPath);
       vibrant.getPalette().then(palette => {
-        console.log(palette);
-        this.colors.push({ id: image.webPath?.split('/')[3] ?? '', palette });
+        const colorId =  image.webPath?.split('/')[3];
+        const color  = { id: colorId?? '', palette }
+        this.colors.push(color);
       });
     }
   };
 
-  saveColor(color: Color) {
-    this.storage.set(color.id, color);
+  saveColor(item: {colorId: string, swatch: Swatch}) {
+    console.log(item.swatch);
+    this.storageService.setItem(item.colorId, item.swatch.hex);
   }
 
   deleteColor(color: Color) {
     this.colors = this.colors.filter(c => c.id !== color.id);
-    this.storage.remove(color.id);
+    this.storageService.removeItem(color);
   }
 
   async copyHex(hexValue: string) {

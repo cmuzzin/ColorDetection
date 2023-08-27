@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 import { Tab1PageRoutingModule } from './tab1-routing.module';
-import { PalletteComponentModule } from '../palette/palette.module';
+import { PalletteComponentModule } from './palette/palette.module';
 
 @NgModule({
   imports: [
@@ -12,7 +12,7 @@ import { PalletteComponentModule } from '../palette/palette.module';
     CommonModule,
     FormsModule,
     Tab1PageRoutingModule,
-    PalletteComponentModule,
+    PalletteComponentModule
   ],
   declarations: [Tab1Page]
 })
